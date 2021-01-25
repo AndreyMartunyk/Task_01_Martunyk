@@ -8,9 +8,10 @@ public class DeadZoneScr : MonoBehaviour
     {
         if (collision.gameObject.GetComponent<BallScr>())
         {
-            GameManager.getInstance().KillTheBall(collision.gameObject);
+            collision.gameObject.GetComponent<BallScr>().Die();
         }
-
-        Destroy(collision);
+        else {
+            Destroy(collision);
+        } 
     }
 }

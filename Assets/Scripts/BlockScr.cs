@@ -9,20 +9,20 @@ public class BlockScr : MonoBehaviour
 
     private int curLives;
 
+    private BlockManager _manager;
+
+    public void SetBlockManager(BlockManager manager) {
+        _manager = manager;
+    }
+
     void Start()
     {
         curLives = maxLives;
         
     }
 
-    void Update()
-    {
-        
-    }
-
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        Debug.Log("coll enter 2d " + collision.gameObject.name);
         BallScr ball = collision.gameObject.GetComponent<BallScr>();
         if (ball)
         {
@@ -32,7 +32,6 @@ public class BlockScr : MonoBehaviour
 
     private void TakeHit(int damage)
     {
-        Debug.Log("Take hit - " + damage.ToString());
         curLives -= damage;
         if (curLives <= 0)
         {
@@ -42,7 +41,6 @@ public class BlockScr : MonoBehaviour
 
     private void Die()
     {
-        Debug.Log("I am die!!");
-        Destroy(gameObject);
+        _manager.KillBlock(this);
     }
 }

@@ -6,21 +6,9 @@ public class PlayerMovementScr : MonoBehaviour
 {
     [SerializeField]
     private float _playerSlidingArea = 2f;
-    private Vector2 _playerPos;
     private Vector2 _mousePos;
     [SerializeField]
     private float _speed = 0.5f;
-    // Start is called before the first frame update
-    void Start()
-    {
-        _playerPos = gameObject.transform.position;
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 
     private void OnMouseDrag()
     {
@@ -35,10 +23,4 @@ public class PlayerMovementScr : MonoBehaviour
             transform.position = new Vector2(_playerSlidingArea, transform.position.y);
         }
     }
-
-    private void OnMouseUp()
-    {
-        
-    }
-
 }

@@ -17,12 +17,17 @@ public class BallScr : MonoBehaviour
     [SerializeField]
     private Vector2 _ballInitialForce = new Vector2(100f, 300f);
 
+    private BallsManager _manager;
     private bool _isActive = false;
-    private Rigidbody2D _rb;
+    private Rigidbody2D _ballRb;
+
+    public void SetBallManager(BallsManager manager) {
+        _manager = manager;
+    }
     
     void Start()
     {
-        _rb = gameObject.GetComponent<Rigidbody2D>();
+        _ballRb = gameObject.GetComponent<Rigidbody2D>();
     }
 
     void Update()
@@ -33,17 +38,19 @@ public class BallScr : MonoBehaviour
         }
         
     }
-
+      
     private void StartFlying()
     {
         if (!_isActive)
         {
             _isActive = true;
-            _rb.AddForce(_ballInitialForce);
+            transform.parent = null;
+            _ballRb.AddForce(_ballInitialForce);
         }        
     }
 
-    public void Kill() {
-
+    public void Die() {
+        _manager.KillTheBall(this);
     }
+
 }
